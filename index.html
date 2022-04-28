@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/JS/bootstrap.min.css">
+    <script src="/JS/jquery-3.6.0.min.js"></script>
+    <script src="/JS/bootstrap.min.css"></script>
+    <style>
+        *{
+            margin: auto;
+            padding: 0;
+        }
+        .wapper{
+            height: 600px;
+            width: 1089px;
+            
+        }
+        
+        header{
+            height: 150px;
+            width: 100%;
+            background-color: rgb(252, 249, 249);
+           
+        }
+     nav{
+         height: 50px;
+         width: 100%;
+     }
+      nav ul{
+          list-style: none;
+         
+      }
+      nav ul li {
+          float: left;
+          text-indent: 20px;
+      }
+      .content {
+         text-align: left;
+      }
+      .content tr th{
+          text-indent: 50px;
+      }
+      table, th, td{
+        border-top:1px solid #ccc;
+        border-bottom:1px solid #ccc;
+    }
+    table{
+        border-collapse:collapse;
+    }
+    footer{
+        padding-top: 100px;
+        text-align: center;
+    }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            var i = 1;
+            $("#myBtn").click(function( ) {
+                $("myModal").modal();
+            });
+            
+
+
+        // KIỂM TRA SĐT  
+        function Kiemtrasdt(){
+            var re=/^(0)+[0-9]{3}\-[0-9]{3}-[0-9]{3}\-\d{2}\-\d{4}$/;
+            if($("#txtsdt").val()  == ""){
+                $("#tbsdt").html("* bắt buộc nhập");
+                return false;
+            }
+            if(!re.test($("#txtsdt").val())){
+                $("#tbsdt").html("*nhập số điện thoại theo mẫu: 0XXX-XXX-XXX");
+                return false;
+            }
+            $("#tbsdt").html("*");
+            return true;
+        }
+        $("#tbsdt").blur(Kiemtrasdt);
+
+    // KIỂM TRA SỐ ÁO
+    function Kiemtraao(){
+        var re=/^[1-9]{1}+[0-9]{1}$/;
+     if($("#txtao").val()  == ""){
+        $("#tbao").html("* bắt buộc nhập");
+        return false;
+     }
+     if(!re.test($("#txtao").val())<20){
+        $("#tbsdt").html("số áo phải < 20");
+        return false;
+     }
+     $("#tbsdt").html("*");
+     return true;
+}
+    $("#tbao").blur(Kiemtraao);
+        //KIỂM TRA NGÀY
+        function KiemtraNgay(){
+            if($("#txtNgay").val()==""){
+                $("#tbNgay").html("*bắt buộc nhập");
+                return false;
+            }
+            var day = new Date($("#txtNgay").val());
+            var today = new Date();
+            today.setDate(today.getDate()+30);
+            if(day<today){
+                $("#tbNgay").html("* Ngày tập trung phải sau ngày hiện tại 30 ngày");
+                return false;
+            }
+            $("#tbNgay").html("*");
+            return true;
+        }
+        $("#txtNgay").blur(KiemtraNgay);
+
+/// KIỂM TRA TÊN
+function Kiemtraten(){
+    var re=/^(A-Z)+[a-z]\ \$/;
+    if($("#txtsdt").val()  == ""){
+        $("#tbsdt").html("* bắt buộc nhập");
+        return false;
+    }
+    if(!re.test($("#txtsdt").val())){
+        $("#tbsdt").html("*nhập số điện thoại theo mẫu: 0XXX-XXX-XXX");
+        return false;
+    }
+    $("#tbsdt").html("*");
+    return true;
+}
+$("#tbten").blur(Kiemtraten); 
+/// KIỂM TRA CÂU LẠC BỘ
+function Kiemtraclb(){
+    var re=/^(A-Z)+[a-z]\ \$/;
+    if($("#txtclb").val()  == ""){
+        $("#tbclb").html("* bắt buộc nhập");
+        return false;
+    }
+    if(!re.test($("#txtclb").val())){
+        $("#tbsdt").html("vui lòng viết hoa chữ cái đầu");
+        return false;
+    }
+    $("#tbclb").html("*");
+    return true;
+}
+$("#tbclb").blur(Kiemtraclb); 
+
+    
+});
+    </script>
+</head>
+<body>
+    <div class="wapper">
+        <header>
+            <img src="Images/HEADER.PNG" alt="">
+           
+           
+        </header>
+        <nav>
+           <ul>
+               <li><a href="#">Đăng nhập</a></li>
+               <li><a href="#">Đăng kí</a></li>
+           </ul>
+          
+        </nav>
+        <div class="content">
+            <table>
+            <tr>
+                <th>STT</th>
+                <th>Họ Tên</th>
+                <th>Số áo</th>
+                <th>câu lạc bộ</th>
+                <th>ngày tập trung</th>
+                <th>số điện thoại</th>
+                <th>ảnh đại diện</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>Nguyen Cong Phuong</th>
+                <th>10</th>
+                <th>Hoàng Anh Gia Lai</th>
+                <th>22/12/2012</th>
+                <th>0989-888-777</th>
+                <th>Anh 1</th>
+            </tr>
+        </table>
+        <footer>
+            STT:77 MSSV:20056171 Họ Tên:Nguyễn Công Trí
+        </footer>
+        </div>
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 style="text-align: center">THÔNG TIN CÁ NHÂN</h4>
+                    <div class="modal-body">
+                    <form role="form" class="form-horizontal" >
+                        <div class="form-group">
+                            <label for="txthoten" class="control-lable col-xs-3">Họ Tên</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="txthoten" placeholder="nhập họ tên">
+                                <span id="tbhoten" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtao" class="control-lable col-xs-3">Số Áo</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control"  id="txtao" placeholder="nhập số áo" onblur="kiemtraao()">
+                                <span id="tbMa" class="text">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtclb" class="control-lable col-xs-3">câu lạc bộ</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control"  id="txtclb" placeholder="nhập câu lạc bộ">
+                                <span id="tbclb" class="text">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNgay" class="control-lable col-xs-3">Ngày tập trung</label>
+                            <div class="col-md-9">
+                                <input type="Date" class="form-control"  id="txtNgay" placeholder="Nhập ngày tập trung">
+                                <span id="tbNgay" class="text">*</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="txtsdt" class="control-lable col-xs-3">Số điện thoại</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control"  id="txtsdt" placeholder="nhập số điện thoại" onblur="kiemtrasdt()">
+                                <span id="tbsdt" class="text-danger">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtanh" class="control-lable col-xs-3">Ảnh đại diện</label>
+                            <div class="col-md-9">
+                                <input type="file" class="form-control"  id="txtanh" placeholder="">
+                                <span id="tbGia" class="text-danger">*</span>
+                            </div>
+                        </div>
+                        
+                   
+                        <button type="button" id="btnSave" class="btn btn-success btn-block">Lưu</button>
+                    </form>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+     </div>
+       
+    </div>
+</body>
+</html>
