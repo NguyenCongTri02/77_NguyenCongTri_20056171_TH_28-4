@@ -67,7 +67,7 @@
 
         // KIỂM TRA SĐT  
         function Kiemtrasdt(){
-            var re=/^(0)+[0-9]{3}\-[0-9]{3}-[0-9]{3}\-\d{2}\-\d{4}$/;
+            var mauKT = /^0\d{3}-\d{3}-\d{3}$/;
             if($("#txtsdt").val()  == ""){
                 $("#tbsdt").html("* bắt buộc nhập");
                 return false;
@@ -115,20 +115,22 @@
         $("#txtNgay").blur(KiemtraNgay);
 
 /// KIỂM TRA TÊN
-function Kiemtraten(){
-    var re=/^(A-Z)+[a-z]\ \$/;
-    if($("#txtsdt").val()  == ""){
-        $("#tbsdt").html("* bắt buộc nhập");
+function kiemtraten(){
+    var i = 1;
+    let mauKT = /([A-Z]{1}[a-z]+)((\s{1}[A-Z]{1}{a-z]+){1,})$/;
+    if($("#txthoten").val() == ""){
+        $("#tbhoten").html("Không để trống")
         return false;
     }
-    if(!re.test($("#txtsdt").val())){
-        $("#tbsdt").html("*nhập số điện thoại theo mẫu: 0XXX-XXX-XXX");
-        return false;
+    if(!mauKT.test($("#txthoten").val())){
+        $("#tbhoten").html("Mỗi kí tự đầu viết hoa không dùng số")
+        return true;
     }
-    $("#tbsdt").html("*");
-    return true;
+    $("#tbhoten").html("*")
+        return true;
 }
-$("#tbten").blur(Kiemtraten); 
+$("#tbhoten").blur(kiemtraten);
+
 /// KIỂM TRA CÂU LẠC BỘ
 function Kiemtraclb(){
     var re=/^(A-Z)+[a-z]\ \$/;
